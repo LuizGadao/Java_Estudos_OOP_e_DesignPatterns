@@ -8,7 +8,7 @@ public class Divida {
 	
 	private double total;
 	private String credor;
-	private Cnpj cnpjCredor;
+	private IDocumentos documento;
 	//private List<Pagamento> pagamentos = new ArrayList<Pagamento>();
 	private Pagamentos pagamentos = new Pagamentos();
 	
@@ -16,12 +16,11 @@ public class Divida {
 		super();
 	}
 
-	public Divida( double valor, String credor, String cnpjCredor) {
+	public Divida( double valor, String credor, IDocumentos documento ) {
 		this.total = valor;
 		this.credor = credor;
 		
-		this.cnpjCredor = new Cnpj();
-		this.cnpjCredor.setCnpjCredo( cnpjCredor );
+		this.documento = documento;
 	}
 	
 	public double getTotal() {
@@ -43,15 +42,12 @@ public class Divida {
 		this.credor = credor;
 	}
 	
-	public String getCnpjCredor() {
-		return cnpjCredor.toString();
+	public IDocumentos getDocumento() {
+		return documento;
 	}
 	
-	public void setCnpjCredor(String cnpjCredor) {
-		if ( this.cnpjCredor == null )
-			this.cnpjCredor = new Cnpj();
-		
-		this.cnpjCredor.setCnpjCredo( cnpjCredor );
+	public void setDocumento(IDocumentos documento) {
+		this.documento = documento;
 	}
 	
 	public List<Pagamento> getPagamentos() {
@@ -60,6 +56,6 @@ public class Divida {
 	
 	public void registra( Pagamento pagamento )
 	{
-		pagamentos.adicionaPagamento( pagamento );
+		pagamentos.adicionaPagamento( pagamento, total );
 	}
 }

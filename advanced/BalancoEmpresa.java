@@ -6,22 +6,22 @@ public class BalancoEmpresa {
 
 	private HashMap<String, Divida> dividas = new HashMap<String, Divida>();
 	
-	public void registraDivida( double valor, String credor, String cnpjPagador )
+	public void registraDivida( double valor, String credor, IDocumentos documento )
 	{
 		Divida divida = new Divida();
 		divida.setTotal(valor);
 		divida.setCredor(credor);
-		divida.setCnpjCredor(cnpjPagador);
+		divida.setDocumento( documento );
 		
-		dividas.put(cnpjPagador, divida);
+		dividas.put( documento.getValor(), divida);
 	}
 	
-	public void pagaDivida( String pagador, String cnpjPagador, double valor )
+	public void pagaDivida( String pagador, IDocumentos documento, double valor )
 	{	
-		if ( dividas.containsKey(cnpjPagador) )
+		if ( dividas.containsKey(documento) )
 		{
-			Divida divida = dividas.get( cnpjPagador );
-			divida.registra( new Pagamento(valor, pagador, cnpjPagador, Calendar.getInstance()) );
+			Divida divida = dividas.get( documento );
+			divida.registra( new Pagamento(valor, pagador, documento, Calendar.getInstance()) );
 		}
 		else
 			throw new IllegalArgumentException("CNPJ do pagador Ž inexistente.");

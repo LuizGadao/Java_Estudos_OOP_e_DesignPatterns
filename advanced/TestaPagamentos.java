@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
 
 public class TestaPagamentos {
 	
@@ -19,6 +22,9 @@ public class TestaPagamentos {
 		System.out.println("total: " + pagamentos.getTotalPago() );
 		System.out.println("pg1 foi pago? " + (pagamentos.foiPago(pg1) ? "sim" : "n‹o") );
 		System.out.println("pg3 foi pago? " + (pagamentos.foiPago(pg3) ? "sim" : "n‹o") );
+		
+		
+		
 	}
 
 }
